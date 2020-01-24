@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER alberto
+MAINTAINER emiliosmoreno
 RUN yum install -y java wget mvn --setopt=tsflags=nodocs && \
     yum -y clean all
 LABEL io.k8s.description="Platform for building and running Java8 apps" \
@@ -7,7 +7,7 @@ LABEL io.k8s.description="Platform for building and running Java8 apps" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,java8" \
       io.openshift.s2i.destination="/opt/app" \
-      io.openshift.s2i.scripts-url=image:///tmpc/src
+      io.openshift.s2i.scripts-url=image:///tmp/src
 RUN adduser --system -u 1001 javauser
 RUN mkdir -p /opt/app && chown -R javauser: /opt/app
 RUN mkdir /tmp/src
